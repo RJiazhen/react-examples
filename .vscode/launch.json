@@ -1,0 +1,33 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Storybook",
+      "request": "launch",
+      "type": "chrome",
+      "url": "http://localhost:6006",
+      "webRoot": "${workspaceFolder}/src",
+      "preLaunchTask": "npm: storybook",
+      "sourceMaps": true,
+      "sourceMapPathOverrides": {
+        "webpack:///src/*": "${webRoot}/*",
+        "webpack:///./*": "${webRoot}/*",
+        "webpack:///./~/*": "${webRoot}/node_modules/*"
+      },
+      "runtimeArgs": [
+        "--remote-debugging-port=9222"
+      ],
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+    {
+      "name": "Debug React App (Vite)",
+      "request": "launch",
+      "type": "chrome",
+      "url": "http://localhost:5173",
+      "webRoot": "${workspaceFolder}/src",
+      "preLaunchTask": "npm: dev"
+    }
+  ]
+}
