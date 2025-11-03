@@ -1,0 +1,128 @@
+---
+alwaysApply: true
+---
+
+# React + TypeScript + Vite 项目规则
+
+## 技术栈
+- React 18.3+ with TypeScript
+- Vite 作为构建工具
+- Storybook 用于组件开发
+- Ant Design 5.x UI组件库
+- SCSS/Sass 用于样式
+- ESLint 用于代码检查
+- pnpm 作为包管理器
+
+## 代码风格
+
+### TypeScript/React
+- 使用函数组件和 Hooks
+- 优先使用 TypeScript 类型推断，仅在必要时显式声明类型
+- 组件使用 PascalCase 命名
+- 文件名与组件名保持一致（使用 index.tsx 作为组件入口）
+- 使用 interface 定义 Props 类型
+- Props 接口命名为 `ComponentNameProps`
+
+### 导入顺序
+1. React 相关导入
+2. 第三方库导入
+3. 组件导入
+4. 类型导入
+5. 样式导入（使用相对路径）
+
+### 样式
+- 组件样式文件使用 SCSS，与组件同目录
+- 样式文件命名为 `index.scss`
+- 使用 CSS Modules 或 BEM 命名规范（根据项目需要）
+- 避免全局样式污染
+
+## 组件开发规范
+
+### 组件结构
+```
+ComponentName/
+  ├── index.tsx      # 组件主文件
+  ├── index.scss     # 组件样式
+  └── types.ts       # 类型定义（如需要）
+```
+
+### Hook 使用
+- 优先使用函数式组件和 Hooks
+- 正确使用 useEffect 的依赖数组
+- 避免在渲染过程中创建对象或函数，使用 useMemo/useCallback 优化
+- 确保正确清理副作用（取消订阅、移除事件监听器等）
+
+### State 管理
+- 组件内部状态使用 useState
+- 跨组件共享状态考虑使用 Context API 或状态管理库
+- 避免不必要的状态提升
+
+## 文件组织
+
+### 目录结构
+- `src/components/` - 可复用组件
+- `src/examples/` - 示例组件
+- `src/stories/` - Storybook stories
+- `src/assets/` - 静态资源
+
+### 命名规范
+- 组件目录：PascalCase（如 `CaretPopup`）
+- 文件名：camelCase（如 `index.tsx`, `types.ts`）
+- 常量：UPPER_SNAKE_CASE
+- 函数/变量：camelCase
+
+## Git 提交规范
+
+遵循 Conventional Commits 中文格式：
+
+- `feat(模块名): 添加新功能`
+- `fix(模块名): 修复问题`
+- `docs(模块名): 更新文档`
+- `style(模块名): 代码格式调整`
+- `refactor(模块名): 代码重构`
+- `test(模块名): 添加测试用例`
+- `chore(模块名): 构建过程或辅助工具的变动`
+
+提交信息应该简洁明了，能够清楚地描述变更内容。
+
+## 代码生成规范
+
+### 代码编辑
+- 不要自动格式化或美化生成的代码
+- 不要重新排序导入或声明
+- 不要添加或删除分号
+- 不要更改引号风格
+- 不要修改现有代码风格
+
+### 代码质量
+- 确保所有新代码通过 ESLint 检查
+- 遵循 React Hooks 规则
+- 避免使用 any 类型，优先使用具体类型或 unknown
+- 确保组件可访问性（a11y）
+
+## Storybook
+
+- 每个组件应配套 Storybook stories
+- Stories 文件命名为 `ComponentName.stories.ts`
+- 提供多种使用场景和状态的示例
+- 使用 Controls 和 Actions 增强交互性
+
+## 性能优化
+
+- 使用 React.memo 包装纯组件（仅在必要时）
+- 使用 useMemo 缓存计算结果
+- 使用 useCallback 缓存函数引用
+- 避免在 JSX 中创建内联对象或函数
+- 合理使用懒加载（React.lazy）
+
+## 错误处理
+
+- 使用 Error Boundaries 捕获组件错误
+- 提供有意义的错误信息
+- 在开发环境显示详细错误，生产环境显示用户友好提示
+
+## 注释规范
+
+- 对复杂逻辑添加注释说明
+- 使用 JSDoc 注释描述函数和组件
+- 避免过度注释显而易见的代码
